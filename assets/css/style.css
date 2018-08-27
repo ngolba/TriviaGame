@@ -13,3 +13,7 @@ canvas {
     margin-right: auto;
     
 }
+
+.gameOverScreen {
+    display: none;
+}
