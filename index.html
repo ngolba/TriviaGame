@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <canvas id="playingField" width="500" height="500"></canvas>
     <div class="container">
         <div class="jumbotron">
             <div class="endScreen">
@@ -21,6 +22,7 @@
                     <span id="numOfQuestions"></span>
                 </h1>
                 <button type="button" class="btn btn-primary btn-lg')" id="restartButton">Restart</button>
+                <div class="itsasecret float-right"></div>
             </div>
             <div class="playScreen">
                 <h1 class="display-4 text-center">Trivia or whatever.</h1>
@@ -55,6 +57,7 @@
 
             </div>
         </div>
+        <button class="btn btn-dark" id='realStartButton'></button>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
