@@ -339,8 +339,8 @@ var foodY;
 
 var makeFood = () => {
 
-    foodX = generateRandomCords(499, 0);
-    foodY = generateRandomCords(499, 0);
+    foodX = generateRandomCords(490, 0);
+    foodY = generateRandomCords(490, 0);
 
 
     snake.forEach(
@@ -459,7 +459,7 @@ var theGame = () => {
             $('#score').text("Score: " + score);
             
         }
-    }, 100);
+    }, 50);
 }
 
 $('#reRestart').click(() => {
