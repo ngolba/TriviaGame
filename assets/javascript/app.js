@@ -95,6 +95,9 @@ var timer = function (timeAlloted, numOfQuestions) {
             time--;
             $('#timer').text(time);
             if (time == 0 && i < numOfQuestions) {
+                if(answerSubmitted === false);
+                incorrect++;
+                nextQuestion();
                 time = timeAlloted;
                 done = true;
                 i++;
@@ -459,7 +462,7 @@ var theGame = () => {
             $('#score').text("Score: " + score);
             
         }
-    }, 50);
+    }, 80);
 }
 
 $('#reRestart').click(() => {

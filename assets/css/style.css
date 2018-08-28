@@ -2,6 +2,10 @@
     display: none;
 }
 
+#submitButton {
+    display: none;
+}
+
 #realStartButton {
     display: none;
 }
