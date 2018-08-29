@@ -5,6 +5,7 @@ var answerSubmitted = false;
 var numOfQuestions = 5;
 var time = 30;
 var gameStarted = false;
+var answerCorrect = false;
 var question1 = new Question('In what organ of the human body would you find the cochlea?', 'eye', 'nose', 'heart', 'ear', 3);
 var question2 = new Question('Something that is described as "vespine" resembles what type of insect?', 'dragonfly', 'wasp', 'beatle', 'centipede', 1)
 var question3 = new Question('What "-itis" is an inflammation of the liver?', 'colitis', 'gastroenteritis', 'hepatitis', 'encephalitis', 2);
@@ -14,6 +15,7 @@ var questionArray = [question1, question2, question3, question4, question5];
 var currentQuestion = questionArray[currentQuestionNumber];
 var correct = 0;
 var incorrect = 0;
+var countdown;
 
 // Constructors are a thing ... 
 
@@ -24,18 +26,31 @@ function Question(question, answer1, answer2, answer3, answer4, correctAnswerInd
     this.answer3 = answer3;
     this.answer4 = answer4;
     this.correctAnswerIndex = correctAnswerIndex;
-    this.answerArray = [answer1, answer2, answer3, answer4]
+    this.answerArray = [answer1, answer2, answer3, answer4];
+    this.correctAnswer = this.answerArray[this.correctAnswerIndex];
 }
 
 
 
 var nextQuestion = function () {
-    currentQuestionNumber++
-    setupQuestion(currentQuestionNumber);
+    clearInterval(countdown);
+    timerRunning = false;
+    if (answerSubmitted === true) {
+        pauseForAnswer();
+    } else {
+        currentQuestionNumber++
+        if (currentQuestionNumber === numOfQuestions) {
+            endGame();
+        }
+        $('.userChoice').removeClass('border');
+        setupQuestion(currentQuestionNumber);
+        timer(30, 5);
+    }
 }
 
 
 var setupQuestion = function (questionArrayNumber) {
+    $('#questionText').html('Question: ' + '<span id="question"></span>');
     currentQuestion = questionArray[questionArrayNumber];
     $('#question').text(currentQuestion.question);
     $('#choiceOne').text(currentQuestion.answer1);
@@ -47,7 +62,7 @@ var setupQuestion = function (questionArrayNumber) {
 
 $('.answerChoice').click(function () {
     $(this).addClass('userChoice border');
-    $(this).siblings().removeClass('userChoice border');
+    $(this).siblings().removeClass('userChoice');
     $('#submitButton').show();
 })
 
@@ -56,19 +71,23 @@ $('#submitButton').click(function () {
     $(this).hide()
     answer = $('.userChoice').text();
     console.log(answer);
+    console.log(currentQuestion.correctAnswer);
 
-    if (currentQuestion.answerArray.indexOf(answer) === currentQuestion.correctAnswerIndex) {
+    // if (currentQuestion.answerArray.indexOf(answer) === currentQuestion.correctAnswerIndex) {
+    if (answer === currentQuestion.correctAnswer) {
         console.log("correct")
+        answerCorrect = true;
         correct++;
     } else {
+        answerCorrect = false;
         incorrect++;
     }
     if (currentQuestionNumber === numOfQuestions - 1) {
         return answerSubmitted = true;
     } else {
+        answerSubmitted = true;
         nextQuestion();
-        return answerSubmitted = true;
-
+        return;
     }
 })
 
@@ -91,16 +110,17 @@ var timer = function (timeAlloted, numOfQuestions) {
         timerRunning = true;
         var time = timeAlloted;
         var i = 0;
-        var countdown = setInterval(function () {
+        $('#timer').text(time);
+        countdown = setInterval(function () {
             time--;
             $('#timer').text(time);
             if (time == 0 && i < numOfQuestions) {
-                if(answerSubmitted === false);
+                answerSubmitted = true;
                 incorrect++;
-                nextQuestion();
                 time = timeAlloted;
                 done = true;
                 i++;
+                nextQuestion();
 
             } else if ((i === numOfQuestions - 1 && answerSubmitted === true) || (i === numOfQuestions - 1 && time === 0)) {
                 timerRunning = false;
@@ -111,7 +131,7 @@ var timer = function (timeAlloted, numOfQuestions) {
             } else if (answerSubmitted === true) {
                 time = timeAlloted;
                 i++;
-                answerSubmitted = false;
+                // answerSubmitted = false;
 
             }
 
@@ -123,6 +143,34 @@ var timer = function (timeAlloted, numOfQuestions) {
     return;
 }
 
+var pauseForAnswer = function () {
+    console.log('made it here');
+    $('#timer').text('0');
+    if (answerCorrect === true) {
+        $('#questionText').text('Correct!');
+    } else {
+        $('#questionText').text('Incorrect!');
+    }
+    $('.answerChoice').each(function () {
+        if ($(this).text() === currentQuestion.correctAnswer) {
+            $(this).addClass('correctAnswer')
+        } else {
+            $(this).addClass('wrongAnswer')
+        }
+
+    })
+
+
+    setTimeout(function () {
+        $('.answerChoice').each( function() {
+            $(this).removeClass('wrongAnswer').removeClass('correctAnswer');
+        })
+        answerSubmitted = false;
+        nextQuestion();
+    }, 3000)
+
+
+}
 
 $('#startButton').click(function () {
     $(this).hide();
@@ -460,11 +508,11 @@ var theGame = () => {
             $('canvas').hide();
             $('.gameOverScreen').show();
             $('#score').text("Score: " + score);
-            
+
         }
     }, 80);
 }
 
 $('#reRestart').click(() => {
-    resetButtonButForTheSnakeThing()}
-);
+    resetButtonButForTheSnakeThing()
+});

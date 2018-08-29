@@ -21,3 +21,11 @@ canvas {
 .gameOverScreen {
     display: none;
 }
+
+.correctAnswer {
+    background-color: rgb(79, 185, 79);
+}
+
+.wrongAnswer {
+    background-color: rgb(209, 91, 91);
+}
