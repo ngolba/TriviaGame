@@ -12,10 +12,9 @@ function Question(question, answer1, answer2, answer3, answer4, correctAnswerInd
 }
 
 
-var done = false;
 var timerRunning = false;
 var currentQuestionNumber = 0;
-var answerSubmitted = false;
+var answerSubmitted = false
 var numOfQuestions = 5;
 var time = 30;
 var gameStarted = false;
@@ -51,6 +50,30 @@ var nextQuestion = function () {
     }
 }
 
+var pauseForAnswer = function () {
+    console.log('made it here');
+    $('#timer').text('0');
+    if (answerCorrect === true) {
+        $('#questionText').text('Correct!');
+    } else {
+        $('#questionText').text('Incorrect!');
+    }
+    $('.answerChoice').each(function () {
+        if ($(this).text() === currentQuestion.correctAnswer) {
+            $(this).addClass('correctAnswer')
+        } else {
+            $(this).addClass('wrongAnswer')
+        }
+
+    })
+    setTimeout(function () {
+        $('.answerChoice').each(function () {
+            $(this).removeClass('wrongAnswer').removeClass('correctAnswer');
+        })
+        answerSubmitted = false;
+        nextQuestion();
+    }, 3000)
+}
 
 var setupQuestion = function (questionArrayNumber) {
     $('#questionText').html('Question: ' + '<span id="question"></span>');
@@ -106,9 +129,7 @@ var timer = function (timeAlloted, numOfQuestions) {
     // Prevents multiple iterations of timer at same time
     if (timerRunning == true) {
         return;
-    }
-    //
-    else {
+    } else {
         timerRunning = true;
         var time = timeAlloted;
         var i = 0;
@@ -120,10 +141,8 @@ var timer = function (timeAlloted, numOfQuestions) {
                 answerSubmitted = true;
                 incorrect++;
                 time = timeAlloted;
-                done = true;
                 i++;
                 nextQuestion();
-
             } else if ((i === numOfQuestions - 1 && answerSubmitted === true) || (i === numOfQuestions - 1 && time === 0)) {
                 timerRunning = false;
                 time = 0;
@@ -134,43 +153,12 @@ var timer = function (timeAlloted, numOfQuestions) {
                 time = timeAlloted;
                 i++;
             }
-
-
-
         }, 1000)
-
     }
     return;
 }
 
-var pauseForAnswer = function () {
-    console.log('made it here');
-    $('#timer').text('0');
-    if (answerCorrect === true) {
-        $('#questionText').text('Correct!');
-    } else {
-        $('#questionText').text('Incorrect!');
-    }
-    $('.answerChoice').each(function () {
-        if ($(this).text() === currentQuestion.correctAnswer) {
-            $(this).addClass('correctAnswer')
-        } else {
-            $(this).addClass('wrongAnswer')
-        }
 
-    })
-
-
-    setTimeout(function () {
-        $('.answerChoice').each(function () {
-            $(this).removeClass('wrongAnswer').removeClass('correctAnswer');
-        })
-        answerSubmitted = false;
-        nextQuestion();
-    }, 3000)
-
-
-}
 
 $('#startButton').click(function () {
     $(this).hide();
@@ -183,7 +171,9 @@ $('#startButton').click(function () {
 });
 
 $('#restartButton').click(function () {
-    done = false;
+    $('.answerChoice').each(function() {
+        $(this).removeClass('border');
+    });
     timerRunning = false;
     currentQuestionNumber = 0;
     answerSubmitted = false;
