@@ -1,3 +1,17 @@
+// Constructors are a thing ... 
+
+function Question(question, answer1, answer2, answer3, answer4, correctAnswerIndex) {
+    this.question = question;
+    this.answer1 = answer1;
+    this.answer2 = answer2;
+    this.answer3 = answer3;
+    this.answer4 = answer4;
+    this.correctAnswerIndex = correctAnswerIndex;
+    this.answerArray = [answer1, answer2, answer3, answer4];
+    this.correctAnswer = this.answerArray[this.correctAnswerIndex];
+}
+
+
 var done = false;
 var timerRunning = false;
 var currentQuestionNumber = 0;
@@ -17,18 +31,7 @@ var correct = 0;
 var incorrect = 0;
 var countdown;
 
-// Constructors are a thing ... 
 
-function Question(question, answer1, answer2, answer3, answer4, correctAnswerIndex) {
-    this.question = question;
-    this.answer1 = answer1;
-    this.answer2 = answer2;
-    this.answer3 = answer3;
-    this.answer4 = answer4;
-    this.correctAnswerIndex = correctAnswerIndex;
-    this.answerArray = [answer1, answer2, answer3, answer4];
-    this.correctAnswer = this.answerArray[this.correctAnswerIndex];
-}
 
 
 
@@ -62,7 +65,7 @@ var setupQuestion = function (questionArrayNumber) {
 
 $('.answerChoice').click(function () {
     $(this).addClass('userChoice border');
-    $(this).siblings().removeClass('userChoice');
+    $(this).siblings().removeClass('userChoice border');
     $('#submitButton').show();
 })
 
@@ -130,8 +133,6 @@ var timer = function (timeAlloted, numOfQuestions) {
             } else if (answerSubmitted === true) {
                 time = timeAlloted;
                 i++;
-                // answerSubmitted = false;
-
             }
 
 
