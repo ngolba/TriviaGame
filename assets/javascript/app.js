@@ -73,7 +73,6 @@ $('#submitButton').click(function () {
     console.log(answer);
     console.log(currentQuestion.correctAnswer);
 
-    // if (currentQuestion.answerArray.indexOf(answer) === currentQuestion.correctAnswerIndex) {
     if (answer === currentQuestion.correctAnswer) {
         console.log("correct")
         answerCorrect = true;
@@ -172,45 +171,45 @@ var pauseForAnswer = function () {
 
 }
 
-// $('#startButton').click(function () {
-//     $(this).hide();
-//     timer(30, 5);
-//     currentQuestionNumber = 0;
+$('#startButton').click(function () {
+    $(this).hide();
+    timer(30, 5);
+    currentQuestionNumber = 0;
 
-//     if (gameStarted === true) {
-//         setupQuestion(currentQuestionNumber);
-//     }
-// });
+    if (gameStarted === true) {
+        setupQuestion(currentQuestionNumber);
+    }
+});
 
-// $('#restartButton').click(function () {
-//     done = false;
-//     timerRunning = false;
-//     currentQuestionNumber = 0;
-//     answerSubmitted = false;
-//     numOfQuestions = 5;
-//     time = 30;
-//     gameStarted = false;
-//     questionArray = [question1, question2, question3, question4, question5];
-//     currentQuestion = questionArray[currentQuestionNumber];
-//     correct = 0;
-//     incorrect = 0;
+$('#restartButton').click(function () {
+    done = false;
+    timerRunning = false;
+    currentQuestionNumber = 0;
+    answerSubmitted = false;
+    numOfQuestions = 5;
+    time = 30;
+    gameStarted = false;
+    questionArray = [question1, question2, question3, question4, question5];
+    currentQuestion = questionArray[currentQuestionNumber];
+    correct = 0;
+    incorrect = 0;
 
-//     $('.endScreen').hide();
-//     $('.playScreen').show();
-//     timer(30, 5);
-//     currentQuestionNumber = 0;
+    $('.endScreen').hide();
+    $('.playScreen').show();
+    timer(30, 5);
+    currentQuestionNumber = 0;
 
-//     if (gameStarted === true) {
-//         setupQuestion(currentQuestionNumber);
-//     }
-// })
+    if (gameStarted === true) {
+        setupQuestion(currentQuestionNumber);
+    }
+})
 
 
 
 // That was easy...
 //alt for testing 
 // I'm using es6 because it's better
-$('#startButton').click(() => {
+// $('#startButton').click(() => {
 
     var endGame = () => {
         $('.playScreen').hide();
@@ -232,7 +231,6 @@ $('#startButton').click(() => {
     var ahhh = ['A', 'H', 'H'];
     var ahhhh = ['A', 'H', 'H', 'H'];
     var ahhhhh = ['A', 'H', 'H', 'H', 'H']
-    var elementCounter = 0;
 
     var stop = () => {
         $('.endScreen').hide();
@@ -242,42 +240,6 @@ $('#startButton').click(() => {
         }, 3000)
         $('#realStartButton').text("super awesome actual start button").addClass('float-right').delay(5000).slideDown(500);
     }
-
-    // $('.itsasecret').click(() => {
-    //     $('.itsasecret').text('Ah')
-    //     message = setTimeout(() => {
-    //         $('.itsasecret').text('AHH')
-    //     }, 2000)
-    //     message = setTimeout(() => {
-    //         var ahhhIterator = setInterval(() => {
-    //             ahhh.push('H')
-    //             $('.itsasecret').text(ahhh.join(''))
-    //             if (ahhh.length >= 150) {
-    //                 clearInterval(ahhhIterator);
-    //                 $('.display-4').text(ahhhh)
-    //                 var ahhhhIterator = setInterval(() => {
-    //                     ahhhh.push('H')
-    //                     $('.display-4').text(ahhhh.join(''))
-    //                     if (ahhhh.length >= 50) {
-    //                         clearInterval(ahhhhIterator);
-    //                         $('#restartButton').text(ahhhhh)
-    //                         var ahhhhhIterator = setInterval(() => {
-    //                             ahhhhh.push('H')
-    //                             $('#restartButton').text(ahhhhh.join(''))
-    //                             if (ahhhhh.length >= 150) {
-    //                                 clearInterval(ahhhhhIterator);
-    //                                 stop();
-    //                                 return;
-    //                             }
-    //                         }, 25)
-    //                     }
-    //                 }, 35)
-    //             }
-    //         }, 50)
-
-    //     }, 5000)
-
-    // })
 
 
     function TextAnimated(element, array, numCharacters, letterAdded, interval) {
@@ -291,21 +253,21 @@ $('#startButton').click(() => {
     var firstAhh = new TextAnimated('.itsasecret', ahhh, 150, 'H', 50);
     var secondAhh = new TextAnimated('.display-4', ahhhh, 50, 'H', 35);
     var thirdAhh = new TextAnimated('#restartButton', ahhhhh, 150, 'H', 25);
-    var ahhArray = [firstAhh, secondAhh, thirdAhh];
+    var ahhhray = [firstAhh, secondAhh, thirdAhh];
 
-    var ahhAnimator = (ahhArray, ahhIndex) => {
-        var ahhElement = ahhArray[ahhIndex];
+    var ahhAnimator = (ahhhray, ahhIndex) => {
+        var ahhElement = ahhhray[ahhIndex];
         var text = setInterval(() => {
             ahhElement.array.push(ahhElement.letterAdded);
             $(ahhElement.element).text(ahhElement.array.join(''));
             if (ahhElement.array.length >= ahhElement.numCharacters) {
                 clearInterval(text)
                 ahhIndex++;
-                if (ahhIndex >= ahhArray.length) {
+                if (ahhIndex >= ahhhray.length) {
                     stop();
                     return;
                 } else {
-                ahhAnimator(ahhArray, ahhIndex);
+                ahhAnimator(ahhhray, ahhIndex);
                 }
             }
         }, ahhElement.interval);
@@ -317,7 +279,7 @@ $('#startButton').click(() => {
             $('.itsasecret').text('AHH')
         }, 2000)
         message = setTimeout(() => {
-            ahhAnimator(ahhArray, 0);
+            ahhAnimator(ahhhray, 0);
         }, 5000)
 
     })
@@ -331,7 +293,7 @@ $('#startButton').click(() => {
 
 
     // skip for debugging
-    endGame();
+    // endGame();
 
 
     // Slow Version/////////////
@@ -562,4 +524,4 @@ $('#startButton').click(() => {
         resetButtonButForTheSnakeThing()
     });
 
-});
+// });
