@@ -10,6 +10,9 @@
     display: none;
 }
 
+.border {
+    background-color: rgb(163, 160, 160);
+}
 canvas {
     display: none;
     border: 2px solid black;

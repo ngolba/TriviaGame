@@ -87,6 +87,9 @@ var setupQuestion = function (questionArrayNumber) {
 }
 
 $('.answerChoice').click(function () {
+    if (gameStarted === false) {
+        return;
+    }
     $(this).addClass('userChoice border');
     $(this).siblings().removeClass('userChoice border');
     $('#submitButton').show();
