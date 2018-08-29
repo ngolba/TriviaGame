@@ -111,6 +111,7 @@ $('#submitButton').click(function () {
         incorrect++;
     }
     if (currentQuestionNumber === numOfQuestions - 1) {
+        pauseForAnswer();
         return answerSubmitted = true;
     } else {
         answerSubmitted = true;
