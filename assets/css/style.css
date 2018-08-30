@@ -1,17 +1,10 @@
-.endScreen {
+.endScreen, #submitButton, .btn-group, #realStartButton, canvas, .gameOverScreen, #duckVid     {
     display: none;
 }
 
-#submitButton {
-    display: none;
-}
 
-#realStartButton {
-    display: none;
-}
 
 .btn-group {
-    display:none;
     float: right;
 }
 
@@ -25,11 +18,6 @@ canvas {
     margin-right: auto;
     
 }
-
-.gameOverScreen {
-    display: none;
-}
-
 .correctAnswer {
     background-color: rgb(79, 185, 79);
 }
@@ -39,7 +27,6 @@ canvas {
 }
 
 #duckVid {
-    display: none;
     margin-left: auto;
     margin-right: auto;
 }
