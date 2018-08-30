@@ -164,47 +164,47 @@ var timer = function (timeAlloted, numOfQuestions) {
 
 
 
-$('#startButton').click(function () {
-    $(this).hide();
-    timer(30, 5);
-    currentQuestionNumber = 0;
+// $('#startButton').click(function () {
+//     $(this).hide();
+//     timer(30, 5);
+//     currentQuestionNumber = 0;
 
-    if (gameStarted === true) {
-        setupQuestion(currentQuestionNumber);
-    }
-});
+//     if (gameStarted === true) {
+//         setupQuestion(currentQuestionNumber);
+//     }
+// });
 
-$('#restartButton').click(function () {
-    $('.answerChoice').each(function() {
-        $(this).removeClass('border');
-    });
-    timerRunning = false;
-    currentQuestionNumber = 0;
-    answerSubmitted = false;
-    numOfQuestions = 5;
-    time = 30;
-    gameStarted = false;
-    questionArray = [question1, question2, question3, question4, question5];
-    currentQuestion = questionArray[currentQuestionNumber];
-    correct = 0;
-    incorrect = 0;
+// $('#restartButton').click(function () {
+//     $('.answerChoice').each(function() {
+//         $(this).removeClass('border');
+//     });
+//     timerRunning = false;
+//     currentQuestionNumber = 0;
+//     answerSubmitted = false;
+//     numOfQuestions = 5;
+//     time = 30;
+//     gameStarted = false;
+//     questionArray = [question1, question2, question3, question4, question5];
+//     currentQuestion = questionArray[currentQuestionNumber];
+//     correct = 0;
+//     incorrect = 0;
 
-    $('.endScreen').hide();
-    $('.playScreen').show();
-    timer(30, 5);
-    currentQuestionNumber = 0;
+//     $('.endScreen').hide();
+//     $('.playScreen').show();
+//     timer(30, 5);
+//     currentQuestionNumber = 0;
 
-    if (gameStarted === true) {
-        setupQuestion(currentQuestionNumber);
-    }
-})
+//     if (gameStarted === true) {
+//         setupQuestion(currentQuestionNumber);
+//     }
+// })
 
 
 
 // That was easy...
 //alt for testing 
 // I'm using es6 because it's better
-// $('#startButton').click(() => {
+$('#startButton').click(() => {
 
     var endGame = () => {
         $('.playScreen').hide();
@@ -226,10 +226,12 @@ $('#restartButton').click(function () {
     var ahhh = ['A', 'H', 'H'];
     var ahhhh = ['A', 'H', 'H', 'H'];
     var ahhhhh = ['A', 'H', 'H', 'H', 'H']
+    $('.mainJumbotron').append('<video width="416" height="400" id="duckVid"> <source  src="assets/img/ducks.mp4"> </video>')
+    var duckVid = document.getElementById('duckVid');
 
     var stop = () => {
         $('.endScreen').hide();
-        $('.jumbotron').html('<h1 class="display-4">Stop.</h1>');
+        $('.mainJumbotron').html('<h1 class="display-4">Stop.</h1>');
         message = setTimeout(() => {
             $('.display-4').text("Let's play the real game....")
         }, 3000)
@@ -259,8 +261,14 @@ $('#restartButton').click(function () {
                 clearInterval(text)
                 ahhIndex++;
                 if (ahhIndex >= ahhhray.length) {
-                    stop();
-                    return;
+                    $('.endScreen').hide()
+                    $('#duckVid').addClass('d-block');
+                    duckVid.play();
+                    setTimeout(() => {
+                        stop();
+                        return;
+                    },4000);
+                    
                 } else {
                 ahhAnimator(ahhhray, ahhIndex);
                 }
@@ -282,13 +290,13 @@ $('#restartButton').click(function () {
 
     var startGame = () => {
         $('canvas').show();
-        $('.container').hide();
+        $('.mainContainer').hide();
         theGame();
     }
 
 
     // skip for debugging
-    // endGame();
+    endGame();
 
 
     // Slow Version/////////////
@@ -312,9 +320,25 @@ $('#restartButton').click(function () {
 
     /////////////////////
 
+    var difficulty = 0;
 
     $('#realStartButton').click(() => {
-        startGame();
+        $('#realStartButton').slideUp(500);
+        $('.btn-group').delay(500).slideDown(500);
+        $('#easy').click(() => {
+            difficulty = 0
+            startGame();
+        })
+        $('#medium').click(() => {
+            difficulty = 1
+            startGame();
+        })
+        $('#hard').click(() => {
+            difficulty = 2
+            startGame();
+        })
+
+        
     })
 
     var playingField = document.getElementById('playingField');
@@ -512,11 +536,11 @@ $('#restartButton').click(function () {
                 $('#score').text("Score: " + score);
 
             }
-        }, 80);
+        }, 100 - (difficulty * 30));
     }
 
     $('#reRestart').click(() => {
         resetButtonButForTheSnakeThing()
     });
 
-// });
+});

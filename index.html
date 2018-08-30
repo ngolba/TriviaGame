@@ -14,14 +14,14 @@
 
 <body>
     <canvas id="playingField" width="500" height="500"></canvas>
-    <div class="container">
-        <div class="jumbotron">
+    <div class="container mainContainer">
+        <div class="jumbotron mainJumbotron">
             <div class="endScreen">
                 <h1 class="display-4"> Correct:
                     <span id="correct"></span> /
                     <span id="numOfQuestions"></span>
                 </h1>
-                <button type="button" class="btn btn-primary btn-lg')" id="restartButton">Restart</button>
+                <button type="button" class="btn btn-primary btn-lg" id="restartButton">Restart</button>
                 <div class="itsasecret float-right"></div>
             </div>
             <div class="playScreen">
@@ -58,11 +58,19 @@
             </div>
         </div>
         <button class="btn btn-dark" id='realStartButton'></button>
+        <div class='btn-group'>
+            <button type='button' class='btn btn-dark' id='easy'>Easy</button>
+            <button type='button' class='btn btn-dark' id='medium'>Medium</button>
+            <button type='button' class='btn btn-dark' id='hard'>Hard</button>
+        </div>
     </div>
-    <div class="gameOverScreen">
-        <h1>Game Over</h1>
-        <h1 id='score'>Score:</h1>
-        <button type='button' class='btn btn-primary' id="reRestart">Restart</button>
+    
+    <div class="gameOverScreen container">
+        <div class="jumbotron">
+                <h1>Game Over</h1>
+                <h1 id='score'>Score:</h1>
+                <button type='button' class='btn btn-primary' id="reRestart">Restart</button>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

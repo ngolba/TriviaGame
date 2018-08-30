@@ -10,6 +10,11 @@
     display: none;
 }
 
+.btn-group {
+    display:none;
+    float: right;
+}
+
 .border {
     background-color: rgb(163, 160, 160);
 }
@@ -31,4 +36,10 @@ canvas {
 
 .wrongAnswer {
     background-color: rgb(209, 91, 91);
+}
+
+#duckVid {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
 }
