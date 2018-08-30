@@ -411,8 +411,8 @@ $('#restartButton').click(function () {
 
     }
 
-    var foodX;
-    var foodY;
+    var foodX = 0;
+    var foodY = 0;
 
     var makeFood = () => {
 
