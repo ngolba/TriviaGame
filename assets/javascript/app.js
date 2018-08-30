@@ -164,47 +164,47 @@ var timer = function (timeAlloted, numOfQuestions) {
 
 
 
-// $('#startButton').click(function () {
-//     $(this).hide();
-//     timer(30, 5);
-//     currentQuestionNumber = 0;
+$('#startButton').click(function () {
+    $(this).hide();
+    timer(30, 5);
+    currentQuestionNumber = 0;
 
-//     if (gameStarted === true) {
-//         setupQuestion(currentQuestionNumber);
-//     }
-// });
+    if (gameStarted === true) {
+        setupQuestion(currentQuestionNumber);
+    }
+});
 
-// $('#restartButton').click(function () {
-//     $('.answerChoice').each(function() {
-//         $(this).removeClass('border');
-//     });
-//     timerRunning = false;
-//     currentQuestionNumber = 0;
-//     answerSubmitted = false;
-//     numOfQuestions = 5;
-//     time = 30;
-//     gameStarted = false;
-//     questionArray = [question1, question2, question3, question4, question5];
-//     currentQuestion = questionArray[currentQuestionNumber];
-//     correct = 0;
-//     incorrect = 0;
+$('#restartButton').click(function () {
+    $('.answerChoice').each(function() {
+        $(this).removeClass('border');
+    });
+    timerRunning = false;
+    currentQuestionNumber = 0;
+    answerSubmitted = false;
+    numOfQuestions = 5;
+    time = 30;
+    gameStarted = false;
+    questionArray = [question1, question2, question3, question4, question5];
+    currentQuestion = questionArray[currentQuestionNumber];
+    correct = 0;
+    incorrect = 0;
 
-//     $('.endScreen').hide();
-//     $('.playScreen').show();
-//     timer(30, 5);
-//     currentQuestionNumber = 0;
+    $('.endScreen').hide();
+    $('.playScreen').show();
+    timer(30, 5);
+    currentQuestionNumber = 0;
 
-//     if (gameStarted === true) {
-//         setupQuestion(currentQuestionNumber);
-//     }
-// })
+    if (gameStarted === true) {
+        setupQuestion(currentQuestionNumber);
+    }
+})
 
 
 
 // That was easy...
 //alt for testing 
 // I'm using es6 because it's better
-$('#startButton').click(() => {
+// $('#startButton').click(() => {
 
     var endGame = () => {
         $('.playScreen').hide();
@@ -296,7 +296,7 @@ $('#startButton').click(() => {
 
 
     // skip for debugging
-    endGame();
+    // endGame();
 
 
     // Slow Version/////////////
@@ -543,4 +543,4 @@ $('#startButton').click(() => {
         resetButtonButForTheSnakeThing()
     });
 
-});
+// });
