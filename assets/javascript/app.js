@@ -111,7 +111,7 @@ var setupQuestion = function (questionArrayNumber) {
 }
 
 $('.answerChoice').click(function () {
-    if (gameStarted === false) {
+    if (gameStarted === false || timerRunning === false) {
         return;
     }
     $(this).addClass('userChoice border');
