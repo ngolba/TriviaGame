@@ -1,15 +1,35 @@
 // Constructors are a thing ... 
 
-function Question(question, answer1, answer2, answer3, answer4, correctAnswerIndex) {
-    this.question = question;
-    this.answer1 = answer1;
-    this.answer2 = answer2;
-    this.answer3 = answer3;
-    this.answer4 = answer4;
-    this.correctAnswerIndex = correctAnswerIndex;
-    this.answerArray = [answer1, answer2, answer3, answer4];
+// function Question(question, answer1, answer2, answer3, answer4, correctAnswerIndex) {
+//     this.question = question;
+//     this.answer1 = answer1;
+//     this.answer2 = answer2;
+//     this.answer3 = answer3;
+//     this.answer4 = answer4;
+//     this.correctAnswerIndex = correctAnswerIndex;
+//     this.answerArray = [answer1, answer2, answer3, answer4];
+//     this.correctAnswer = this.answerArray[this.correctAnswerIndex];
+// }
+
+
+function Question(array) {
+    this.question = array[0];
+    this.answer1 = array[1];
+    this.answer2 = array[2];
+    this.answer3 = array[3];
+    this.answer4 = array[4];
+    this.correctAnswerIndex = array[5];
+    this.answerArray = [this.answer1, this.answer2, this.answer3, this.answer4];
     this.correctAnswer = this.answerArray[this.correctAnswerIndex];
 }
+
+var question1 = new Question(['In what organ of the human body would you find the cochlea?', 'eye', 'nose', 'heart', 'ear', 3]);
+var question2 = new Question(['Something that is described as "vespine" resembles what type of insect?', 'dragonfly', 'wasp', 'beatle', 'centipede', 1])
+var question3 = new Question(['What "-itis" is an inflammation of the liver?', 'colitis', 'gastroenteritis', 'hepatitis', 'encephalitis', 2]);
+var question4 = new Question(['On average, a dragonfly eats how many mosquitoes per day?', '100', '300', '150', '50', 1]);
+var question5 = new Question(['"Coulrophobia" is the fear of what?', 'swimming pools', 'bears', 'rainbows', 'clowns', 3]);
+var questionArray = [question1, question2, question3, question4, question5];
+var countdown = function(){};
 
 
 var timerRunning = false;
@@ -19,18 +39,22 @@ var numOfQuestions = 5;
 var time = 30;
 var gameStarted = false;
 var answerCorrect = false;
-var question1 = new Question('In what organ of the human body would you find the cochlea?', 'eye', 'nose', 'heart', 'ear', 3);
-var question2 = new Question('Something that is described as "vespine" resembles what type of insect?', 'dragonfly', 'wasp', 'beatle', 'centipede', 1)
-var question3 = new Question('What "-itis" is an inflammation of the liver?', 'colitis', 'gastroenteritis', 'hepatitis', 'encephalitis', 2);
-var question4 = new Question('On average, a dragonfly eats how many mosquitoes per day?', '100', '300', '150', '50', 1);
-var question5 = new Question('"Coulrophobia" is the fear of what?', 'swimming pools', 'bears', 'rainbows', 'clowns', 3);
-var questionArray = [question1, question2, question3, question4, question5];
 var currentQuestion = questionArray[currentQuestionNumber];
 var correct = 0;
-var incorrect = 0;
-var countdown;
 
 
+// var gameStatus = {
+//     timerRunning: false,
+//     currentQuestionNumber: 0,
+//     answerSubmitted: false,
+//     numOfQuestions: 5,
+//     time: 30,
+//     gameStarted: false,
+//     answerCorrect: false,
+//     currentQuestion: questionArray[this.currentQuestionNumber],
+//     correct: 0,
+
+// }
 
 
 
@@ -68,7 +92,7 @@ var pauseForAnswer = function () {
     })
     setTimeout(function () {
         $('.answerChoice').each(function () {
-            $(this).removeClass('wrongAnswer').removeClass('correctAnswer');
+            $(this).removeClass('wrongAnswer correctAnswer');
         })
         answerSubmitted = false;
         nextQuestion();
@@ -108,7 +132,6 @@ $('#submitButton').click(function () {
         correct++;
     } else {
         answerCorrect = false;
-        incorrect++;
     }
     if (currentQuestionNumber === numOfQuestions - 1) {
         pauseForAnswer();
@@ -143,7 +166,6 @@ var timer = function (timeAlloted, numOfQuestions) {
             $('#timer').text(time);
             if (time == 0 && i < numOfQuestions) {
                 answerSubmitted = true;
-                incorrect++;
                 time = timeAlloted;
                 i++;
                 nextQuestion();
@@ -187,7 +209,6 @@ $('#restartButton').click(function () {
     questionArray = [question1, question2, question3, question4, question5];
     currentQuestion = questionArray[currentQuestionNumber];
     correct = 0;
-    incorrect = 0;
 
     $('.endScreen').hide();
     $('.playScreen').show();
