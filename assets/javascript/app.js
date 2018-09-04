@@ -43,20 +43,6 @@ var currentQuestion = questionArray[currentQuestionNumber];
 var correct = 0;
 
 
-// var gameStatus = {
-//     timerRunning: false,
-//     currentQuestionNumber: 0,
-//     answerSubmitted: false,
-//     numOfQuestions: 5,
-//     time: 30,
-//     gameStarted: false,
-//     answerCorrect: false,
-//     currentQuestion: questionArray[this.currentQuestionNumber],
-//     correct: 0,
-
-// }
-
-
 
 var nextQuestion = function () {
     clearInterval(countdown);
